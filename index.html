@@ -15,6 +15,16 @@
     <!-- Animate.css CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
+    <style>
+        #section-1{
+            animation-delay:1s;
+            animation-duration:1s;
+            animation-iteration-count:1;
+        }
+        #section-2{
+            animation-delay: 2s;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -28,11 +38,49 @@
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque laborum necessitatibus quisquam suscipit beatae cupiditate, explicabo tempore, officia, et praesentium soluta quaerat unde fugiat reprehenderit. Magni non cupiditate saepe quae illo consectetur doloribus unde tempora tenetur dolorum, expedita sint reprehenderit.</p>
         </section>
 
-        <section id="section-2" class="bg-faded p-5 my-3">
-            <h1>Section Two</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque laborum necessitatibus quisquam suscipit beatae cupiditate, explicabo tempore, officia, et praesentium soluta quaerat unde fugiat reprehenderit. Magni non cupiditate saepe quae illo consectetur doloribus unde tempora tenetur dolorum, expedita sint reprehenderit.</p>
+        <section id="section-2" class="animated slideInRight bg-faded p-5 my-3">
+            <h1 id="anim-head">Section Two</h1>
+            <p id="anim-body">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque laborum necessitatibus quisquam suscipit beatae cupiditate, explicabo tempore, officia, et praesentium soluta quaerat unde fugiat reprehenderit. Magni non cupiditate saepe quae illo consectetur doloribus unde tempora tenetur dolorum, expedita sint reprehenderit.</p>
+            <button id="animateBtn" class="btn btn-primary">Animate</button>
+            <button id="animateBtn2" class="btn btn-primary">Animate 2</button>
+            
         </section>
 
     </div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+
+    <script>
+        $(function(){
+            $('#animateBtn').click(function(){
+                animate('#anim-head', 'bounce');
+                animate('#anim-body', 'rubberBand');
+
+                return false;
+            });
+
+            $('#animateBtn2').click(function(){
+                animate('header', 'slideOutUp');
+                setTimeout(function(){
+                    $('header').css('visibility','hidden');
+                }, 1000);
+
+                return false;
+            });
+
+            //Animate
+            function animate(element, animation){
+            $(element).addClass('animated '+animation);
+            var wait = setTimeout(function(){
+                $(element).removeClass('animated '+animation);
+            }, 1000);
+            }
+        }) 
+    </script>
 </body>
+
+
 </html>
